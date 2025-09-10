@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Public Wi-Fi Interview Guide</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* 🌈 Background animation */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(270deg, #1a2a6c, #b21f1f, #fdbb2d);
+  background-size: 600% 600%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating circles for background depth */
+.circle {
+  position: fixed;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  animation: move 25s linear infinite;
+  z-index: 0;
+  opacity: 0.7;
+}
+
+@keyframes move {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); }
+  100% { transform: translateY(100vh) translateX(100vw) rotate(360deg); }
+}
+
+/* Container */
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  transition: transform 0.3s, text-shadow 0.3s;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 2.8rem;
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  font-style: italic;
+  color: #ccc;
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+h2 i {
+  font-size: 1.5rem;
+}
+
+h1:hover, h2:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 20px #ff4500;
+}
+
+/* Section cards */
+.section {
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  background: rgba(30,30,30,0.8);
+  transition: transform 0.4s, box-shadow 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* Different stakeholder colors */
+.driver { --accent: #ff4d4d; }
+.passenger { --accent: #1e90ff; }
+.vendor { --accent: #00cc66; }
+.provider { --accent: #ff9933; }
+.commuter { --accent: #9b59b6; }
+.student { --accent: #3498db; }
+.business { --accent: #e74c3c; }
+.tourist { --accent: #f1c40f; }
+.elderly { --accent: #e67e22; }
+.youth { --accent: #2ecc71; }
+
+/* Labels and inputs */
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+input[type="text"], input[type="number"], select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.1);
+  outline: none;
+  font-size: 1em;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  transition: all 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px var(--accent);
+  transform: scale(1.02);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Submit Button */
+button {
+  display: block;
+  margin: 25px auto 0 auto;
+  padding: 15px 35px;
+  font-size: 1.2em;
+  background: linear-gradient(90deg, #ffd700, #ff4500);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #111;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #ff4500;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Navigation */
+.nav-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.nav-btn {
+  padding: 10px 15px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-3px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nav-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Animation for sections */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.section {
+  animation: slideIn 0.5s ease forwards;
+}
+
+/* Stagger animations for sections */
+.section:nth-child(1) { animation-delay: 0.1s; }
+.section:nth-child(2) { animation-delay: 0.2s; }
+.section:nth-child(3) { animation-delay: 0.3s; }
+.section:nth-child(4) { animation-delay: 0.4s; }
+.section:nth-child(5) { animation-delay: 0.5s; }
+.section:nth-child(6) { animation-delay: 0.6s; }
+.section:nth-child(7) { animation-delay: 0.7s; }
+.section:nth-child(8) { animation-delay: 0.8s; }
+.section:nth-child(9) { animation-delay: 0.9s; }
+.section:nth-child(10) { animation-delay: 1.0s; }
+</style>
+</head>
+<body>
+
+<!-- Floating circles background -->
+<div class="circle" style="width:120px; height:120px; top:10%; left:15%; background: rgba(255,0,0,0.1);"></div>
+<div class="circle" style="width:80px; height:80px; top:30%; left:70%; background: rgba(0,255,0,0.1);"></div>
+<div class="circle" style="width:150px; height:150px; top:60%; left:40%; background: rgba(0,0,255,0.1);"></div>
+<div class="circle" style="width:100px; height:100px; top:80%; left:20%; background: rgba(255,255,0,0.1);"></div>
+<div class="circle" style="width:90px; height:90px; top:20%; left:80%; background: rgba(255,0,255,0.1);"></div>
+<div class="circle" style="width:130px; height:130px; top:70%; left:60%; background: rgba(0,255,255,0.1);"></div>
+
+<div class="container">
+  <h1>Public Wi-Fi Interview Guide</h1>
+  <p class="subtitle">Interactive Form for Maseru Taxi Ranks Study - 10 Stakeholder Types</p>
+
+  <!-- Navigation -->
+  <div class="nav-container">
+    <button class="nav-btn" onclick="scrollToSection('respondent')">Respondent Info</button>
+    <button class="nav-btn" onclick="scrollToSection('driver')">Taxi Drivers</button>
+    <button class="nav-btn" onclick="scrollToSection('passenger')">Passengers</button>
+    <button class="nav-btn" onclick="scrollToSection('vendor')">Street Vendors</button>
+    <button class="nav-btn" onclick="scrollToSection('provider')">Internet Providers</button>
+    <button class="nav-btn" onclick="scrollToSection('commuter')">Daily Commuters</button>
+    <button class="nav-btn" onclick="scrollToSection('student')">Students</button>
+    <button class="nav-btn" onclick="scrollToSection('business')">Business People</button>
+    <button class="nav-btn" onclick="scrollToSection('tourist')">Tourists</button>
+    <button class="nav-btn" onclick="scrollToSection('elderly')">Elderly</button>
+    <button class="nav-btn" onclick="scrollToSection('youth')">Youth</button>
+  </div>
+
+  <!-- Section: Respondent Info -->
+  <div class="section" id="respondent">
+    <h2><i class="fas fa-user"></i> Section A: Respondent Information</h2>
+    <label>Name (optional)</label>
+    <input type="text" placeholder="Enter name">
+
+    <label>Age</label>
+    <input type="number" placeholder="Enter age">
+
+    <label>Gender</label>
+    <select>
+      <option value="">Select</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+      <option>Prefer not to say</option>
+    </select>
+
+    <label>Stakeholder Type</label>
+    <select>
+      <option value="">Select your role</option>
+      <option>Taxi Driver</option>
+      <option>Passenger</option>
+      <option>Street Vendor</option>
+      <option>Internet Provider</option>
+      <option>Daily Commuter</option>
+      <option>Student</option>
+      <option>Business Person</option>
+      <option>Tourist</option>
+      <option>Elderly Person</option>
+      <option>Youth</option>
+    </select>
+  </div>
+
+  <!-- Section: Taxi Drivers -->
+  <div class="section driver" id="driver">
+    <h2><i class="fas fa-taxi"></i> Taxi Drivers</h2>
+    <label>How often do you see passengers using Wi-Fi at the taxi rank?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>Do you think Wi-Fi makes passengers happier while waiting? Why?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>Has public Wi-Fi helped you personally in your work?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What challenges do you face with internet access while working?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How can Wi-Fi improve the taxi business in Maseru?</label>
+    <textarea placeholder="Enter response"></textarea>
+  </div>
+
+  <!-- Section: Passengers -->
+  <div class="section passenger" id="passenger">
+    <h2><i class="fas fa-users"></i> Passengers</h2>
+    <label>Do you use public Wi-Fi at the taxi rank? If yes, for what purposes?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>Does Wi-Fi save you money compared to buying mobile data?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>Do you feel safer or more connected because of Wi-Fi access?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What problems do you face with Wi-Fi at taxi ranks?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How can public Wi-Fi improve your daily commute experience?</label>
+    <textarea placeholder="Enter response"></textarea>
+  </div>
+
+  <!-- Section: Street Vendors -->
+  <div class="section vendor" id="vendor">
+    <h2><i class="fas fa-store"></i> Street Vendors</h2>
+    <label>Do you use Wi-Fi to support your business? How?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>Has Wi-Fi helped you attract more customers? In what way?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What challenges do you face with Wi-Fi connectivity?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>Do you think Wi-Fi makes business more modern and efficient?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What improvements would you suggest for public Wi-Fi?</label>
+    <textarea placeholder="Enter response"></textarea>
+  </div>
+
+  <!-- Section: Internet Providers -->
+  <div class="section provider" id="provider">
+    <h2><i class="fas fa-wifi"></i> Internet Providers</h2>
+    <label>What challenges do you face in providing Wi-Fi at taxi ranks?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How reliable and affordable is the infrastructure for public Wi-Fi?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How does public Wi-Fi contribute to digital inclusion in Maseru?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How can partnerships improve public Wi-Fi services?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What is your vision for the future of public Wi-Fi in Maseru?</label>
+    <textarea placeholder="Enter response"></textarea>
+  </div>
+
+  <!-- Section: Daily Commuters -->
+  <div class="section commuter" id="commuter">
+    <h2><i class="fas fa-bus"></i> Daily Commuters</h2>
+    <label>How often do you use public Wi-Fi during your daily commute?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What activities do you typically do using public Wi-Fi?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How has public Wi-Fi affected your daily routine?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What are the main challenges you face when using public Wi-Fi?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What improvements would make public Wi-Fi more useful for commuters?</label>
+    <textarea placeholder="Enter response"></textarea>
+  </div>
+
+  <!-- Section: Students -->
+  <div class="section student" id="student">
+    <h2><i class="fas fa-graduation-cap"></i> Students</h2>
+    <label>Do you use public Wi-Fi for educational purposes? How?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How has public Wi-Fi helped with your studies?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What educational resources do you access using public Wi-Fi?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What limitations do you face when using public Wi-Fi for learning?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How can public Wi-Fi be improved to better support students?</label>
+    <textarea placeholder="Enter response"></textarea>
+  </div>
+
+  <!-- Section: Business People -->
+  <div class="section business" id="business">
+    <h2><i class="fas fa-briefcase"></i> Business People</h2>
+    <label>How do you utilize public Wi-Fi for business purposes?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>Has public Wi-Fi helped you be more productive during commute times?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What security concerns do you have about using public Wi-Fi for work?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What business applications do you use on public Wi-Fi?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How can public Wi-Fi better support business activities?</label>
+    <textarea placeholder="Enter response"></textarea>
+  </div>
+
+  <!-- Section: Tourists -->
+  <div class="section tourist" id="tourist">
+    <h2><i class="fas fa-camera"></i> Tourists</h2>
+    <label>Have you used public Wi-Fi at taxi ranks as a tourist? For what purposes?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How has public Wi-Fi enhanced your travel experience in Maseru?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What information do you typically look for using public Wi-Fi?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What challenges have you faced using public Wi-Fi as a visitor?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How can public Wi-Fi be improved to better serve tourists?</label>
+    <textarea placeholder="Enter response"></textarea>
+  </div>
+
+  <!-- Section: Elderly -->
+  <div class="section elderly" id="elderly">
+    <h2><i class="fas fa-wheelchair"></i> Elderly</h2>
+    <label>Do you use public Wi-Fi? If yes, for what purposes?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What challenges do you face when trying to use public Wi-Fi?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>Has public Wi-Fi helped you stay connected with family and friends?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What support would help you use public Wi-Fi more effectively?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How can public Wi-Fi be made more accessible for elderly users?</label>
+    <textarea placeholder="Enter response"></textarea>
+  </div>
+
+  <!-- Section: Youth -->
+  <div class="section youth" id="youth">
+    <h2><i class="fas fa-gamepad"></i> Youth</h2>
+    <label>How do you typically use public Wi-Fi at taxi ranks?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What social media or entertainment platforms do you use on public Wi-Fi?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>How has public Wi-Fi affected your social connections?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What limitations do you face when using public Wi-Fi?</label>
+    <textarea placeholder="Enter response"></textarea>
+
+    <label>What would make public Wi-Fi more appealing to young people?</label>
+    <textarea placeholder="Enter response"></textarea>
+  </div>
+
+  <button type="submit"><i class="fas fa-paper-plane"></i> Submit Responses</button>
+</div>
+
+<script>
+// Function to scroll to specific section
+function scrollToSection(sectionId) {
+  document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+}
+
+// Create additional floating circles dynamically
+function createCircles() {
+  const body = document.body;
+  const colors = [
+    'rgba(255,0,0,0.1)', 
+    'rgba(0,255,0,0.1)', 
+    'rgba(0,0,255,0.1)', 
+    'rgba(255,255,0,0.1)', 
+    'rgba(255,0,255,0.1)', 
+    'rgba(0,255,255,0.1)'
+  ];
+  
+  for (let i = 0; i < 10; i++) {
+    const circle = document.createElement('div');
+    circle.classList.add('circle');
+    
+    const size = Math.random() * 100 + 50;
+    const top = Math.random() * 100;
+    const left = Math.random() * 100;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
+    circle.style.width = `${size}px`;
+    circle.style.height = `${size}px`;
+    circle.style.top = `${top}%`;
+    circle.style.left = `${left}%`;
+    circle.style.background = color;
+    circle.style.animationDuration = `${Math.random() * 30 + 20}s`;
+    
+    body.appendChild(circle);
+  }
+}
+
+// Initialize when page loads
+window.onload = function() {
+  createCircles();
+};
+</script>
+</body>
+</html>
